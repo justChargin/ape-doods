@@ -37,11 +37,13 @@ export async function connectWallet(setWalletAddress) {
 
 export async function currentWallet(setWalletAddress) {
   if (window.ethereum) {
-    await window.ethereum
+    const result = await window.ethereum
       .request({ method: "eth_accounts" })
       .then((acc) => {
         let account = acc[0];
-        setWalletAddress(account);
+        if (setWalletAddress) {
+          setWalletAddress(account);
+        }
         if (window.ethereum.chainId != "0x1") {
           toast.dismiss();
           toast.error("You must be use Ethereum Main Network to mint!");
@@ -49,8 +51,9 @@ export async function currentWallet(setWalletAddress) {
         return account;
       })
       .catch((err) => {
-        return;
+        return false;
       });
+    return result;
   }
 }
 

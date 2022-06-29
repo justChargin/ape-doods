@@ -25,6 +25,18 @@ export const mintedBalance = async (walletAddress) => {
   return result;
 };
 
+export const tokensOfOwner = async (walletAddress) => {
+  if (walletAddress.startsWith("0x")) {
+    const result = await nftContract.methods
+      .tokensOfOwner(walletAddress)
+      .call();
+    return result;
+  } else {
+    console.log("there is no wallet or given address is not valid");
+    return false;
+  }
+};
+
 /* MINT */
 
 export const mint = async () => {
