@@ -1,18 +1,12 @@
 import { toast } from "react-toastify";
-
-// const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-// const web3 = createAlchemyWeb3(
-//   "https://polygon-mainnet.g.alchemy.com/v2/PNw-aw8UU6YrxVGD7wq89IAgBnOYs1WZ"
-// );
-
 import Web3 from "web3";
 
 const provider =
-  "https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
+  "https://mainnet.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161";
 const web3 = new Web3(provider);
 
 const contract = require("../contract/apedoods.json");
-const contractAddress = "0xbc2e65dE468eA8836192721C6321916F8818a594";
+const contractAddress = "0xE3290CAf67189816d8817920C32cCb47dfe901f5";
 const nftContract = new web3.eth.Contract(contract.abi, contractAddress);
 
 export const totalSupply = async () => {
